@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Acabou-o-mony-Solutis.iml" filepath="$PROJECT_DIR$/.idea/Acabou-o-mony-Solutis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/performanceAndScalability-service/performanceAndScalability-service.iml" filepath="$PROJECT_DIR$/performanceAndScalability-service/performanceAndScalability-service.iml" />
     </modules>
   </component>
 </project>
