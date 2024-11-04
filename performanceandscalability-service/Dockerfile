@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/performanceandscalability-service-0.0.1-SNAPSHOT.jar app.jar
 
 # Expor a porta 8080 (ou qualquer outra que o serviço esteja configurado para usar)
-EXPOSE 8080
+EXPOSE 8081
 
 # Comando para iniciar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]

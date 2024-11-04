@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: performanceandscalability-deployment
+spec:
+  replicas: 1  # Número inicial de réplicas
+  selector:
+    matchLabels:
+      app: performanceandscalability
+  template:
+    metadata:
+      labels:
+        app: performanceandscalability
+    spec:
+      containers:
+        - name: performanceandscalability
+          image: almeidapietra/performanceandscalability-service:latest
+          ports:
+            - containerPort: 8081
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

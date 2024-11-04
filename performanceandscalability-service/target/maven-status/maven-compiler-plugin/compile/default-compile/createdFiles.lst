@@ -1,1 +1,3 @@
-com\acabouomony\solutis\performanceandscalability_service\PerformanceAndScalabilityApplication.class
+com\acabouomony\solutis\performanceandscalability\controller\CacheTestController.class
+com\acabouomony\solutis\performanceandscalability\PerformanceAndScalabilityApplication.class
+com\acabouomony\solutis\performanceandscalability\service\CacheTestService.class
