@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="payment-service" />
-        <module name="security-service" />
-      </profile>
-    </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="payment-service" options="-parameters" />
-      <module name="security-service" options="-parameters" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="email-service" target="21" />
+      <module name="payment-service" target="17" />
+      <module name="security-service" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
