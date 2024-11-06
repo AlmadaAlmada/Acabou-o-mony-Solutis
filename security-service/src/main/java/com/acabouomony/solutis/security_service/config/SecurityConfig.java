@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig{
     private static final String[] AUTH_WHITELIST = {
-           // Aqui ficam as endpoints que nao precisam de autenticação para serem acessadas
+           // TODO: ficam as endpoints que nao precisam de autenticação para serem acessadas
     };
 
 
