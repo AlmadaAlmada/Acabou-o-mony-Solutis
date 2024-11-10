@@ -15,11 +15,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig{
-    private static final String[] AUTH_WHITELIST = {
-           // TODO: ficam as endpoints que nao precisam de autenticação para serem acessadas
-    };
+public class SecurityConfig {
 
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/webjars/**",
+            // TODO: ficam as endpoints que nao precisam de autenticação para serem acessadas
+    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityFilter securityFilter) throws Exception {
@@ -29,8 +33,8 @@ public class SecurityConfig{
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests
-                                .requestMatchers(AUTH_WHITELIST).permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers(AUTH_WHITELIST).permitAll() // Permite o acesso sem autenticação para o Swagger
+                                .anyRequest().authenticated()              // Exige autenticação para as outras requisições
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

@@ -28,7 +28,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
 
-        log.info("request sendo feito na aplicacao");
+        log.info("Request feito na aplicação");
 
         if (Strings.isNotEmpty(authorizationHeader) && authorizationHeader.startsWith("Bearer ")) {
             try {
@@ -37,16 +37,21 @@ public class SecurityFilter extends OncePerRequestFilter {
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(token);
                 String user = decodedJWT.getSubject();
+
+
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null, null);
+
+
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                filterChain.doFilter(request, response);
+
+                filterChain.doFilter(request, response); // Continua o filtro na cadeia
             } catch (Exception ex) {
-                log.error("Mensagem de erro de autorizacao: {}", ex.getMessage());
+                log.error("Erro de autorização: {}", ex.getMessage());
                 response.setHeader("error", ex.getMessage());
-                response.setStatus(HttpStatus.FORBIDDEN.value());
+                response.setStatus(HttpStatus.FORBIDDEN.value()); // Responde com 403 (Forbidden) caso o token seja inválido
             }
         } else {
-            filterChain.doFilter(request, response);
+            filterChain.doFilter(request, response); // Continua sem fazer nada se não houver token
         }
     }
 }
