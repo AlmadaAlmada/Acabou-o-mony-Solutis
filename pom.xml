@@ -7,8 +7,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!--<module>integration</module> -->
-
         <module>integration</module>
         <module>payment-service</module>
         <module>security-service</module>
@@ -38,7 +36,6 @@
                 <artifactId>postgresql</artifactId>
                 <scope>runtime</scope>
             </dependency>
-            <!-- Outras dependências comuns -->
         </dependencies>
     </dependencyManagement>
 

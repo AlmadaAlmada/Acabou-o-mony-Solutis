@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
   postgres-payment-db:
     image: postgres:13
     container_name: postgres-payment-db
@@ -9,25 +19,9 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=payment_db
     ports:
-      - "5432:5432"  # A porta 5432 do host será usada para acessar o banco de dados payment_db.
+      - "5432:5432"
     volumes:
       - postgres-payment-data:/var/lib/postgresql/data
-
-  payment-service:
-    build:
-      context: ./payment-service
-      dockerfile: Dockerfile
-    container_name: payment-service
-    ports:
-      - "8081:8081"  # A porta 8081 do host será usada para acessar o serviço de pagamento.
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-payment-db:5432/payment_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      SERVER_PORT: 8081
-    depends_on:
-      - postgres-payment-db
-
 
   postgres-security-db:
     image: postgres:13
@@ -37,10 +31,9 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=security_db
     ports:
-      - "5433:5432"  # O host usa 5433, enquanto o contêiner usa 5432 para evitar conflito com o postgres-payment-db.
+      - "5433:5432"
     volumes:
       - postgres-security-data:/var/lib/postgresql/data
-
 
   security-service:
     build:
@@ -48,15 +41,36 @@ services:
       dockerfile: Dockerfile
     container_name: security-service
     ports:
-      - "8082:8081"  # A porta 8082 do host será usada para acessar o serviço de segurança, evitando conflito com o payment-service.
+      - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-security-db:5432/security_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-security-db:5433/security_db
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
       SERVER_PORT: 8081
     depends_on:
       - postgres-security-db
 
+  payment-service:
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile
+    container_name: payment-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-payment-db:5432/payment_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SERVER_PORT: 8083
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    depends_on:
+      - postgres-payment-db
+      - rabbitmq
+      - security-service
+      - postgres-security-db
 volumes:
   postgres-payment-data:
   postgres-security-data:

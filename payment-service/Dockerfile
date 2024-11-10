@@ -10,5 +10,5 @@ RUN mvn clean package -DskipTests
 FROM openjdk:21-jdk
 WORKDIR /app
 COPY --from=build /app/target/payment-service-0.0.1-SNAPSHOT.jar /app/payment-service.jar
-EXPOSE 8081
+EXPOSE 8083
 ENTRYPOINT ["java", "-jar", "payment-service.jar"]
