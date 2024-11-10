@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +20,7 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -27,15 +30,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // Aqui você pode adicionar as permissões do usuário (roles), se houver.
         Set<GrantedAuthority> authorities = new HashSet<>();
-
         // Se o seu modelo User tiver roles ou permissões, adicione-as a "authorities".
-        // Exemplo:
-        // authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        // Exemplo: authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
+        // Retorna o usuário com senha criptografada e permissões.
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
-                .password(user.getPassword())
-                .authorities(authorities)  // As authorities podem ser adicionadas aqui.
+                .password(user.getPassword())  // Aqui, garantimos que a senha está armazenada corretamente.
+                .authorities(authorities)
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)

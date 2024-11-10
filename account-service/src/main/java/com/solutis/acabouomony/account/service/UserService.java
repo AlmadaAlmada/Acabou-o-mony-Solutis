@@ -12,6 +12,8 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotAuthorizedException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -47,11 +49,12 @@ public class UserService {
         }
     }
 
-    public List<UserRespDTO> listUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .map(user -> new UserRespDTO(user.getName(), user.getCpf(), user.getContact(), user.getEmail()))
-                .toList();
+    public Page<UserRespDTO> listUsers(Pageable pageable) {
+        // Usando findAll com Pageable para permitir paginação
+        Page<User> usersPage = userRepository.findAll(pageable);
+
+        // Convertendo a Page de User para uma Page de UserRespDTO
+        return usersPage.map(user -> new UserRespDTO(user.getName(), user.getCpf(), user.getContact(), user.getEmail()));
     }
 
     public void deleteUser(UUID userId) {
