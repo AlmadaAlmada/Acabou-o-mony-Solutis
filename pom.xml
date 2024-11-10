@@ -8,7 +8,7 @@
 
     <modules>
         <!--<module>integration</module> -->
-        <module>account</module>
+
         <module>integration</module>
         <module>payment-service</module>
         <module>security-service</module>
