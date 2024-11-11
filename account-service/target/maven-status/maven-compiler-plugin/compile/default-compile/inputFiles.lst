@@ -1,0 +1,14 @@
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\AccountServiceApplication.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\controller\AuthController.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\controller\UserController.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\dto\request\LoginRequestDTO.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\dto\request\RegisterRequestDTO.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\dto\UserDTO.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\filter\JWTAuthFilter.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\model\User.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\repository\UserRepository.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\security\JWTUtil.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\security\PasswordConfig.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\security\SecurityConfig.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\service\AuthService.java
+C:\Users\Alice Lima\Desktop\Acabou-o-mony-Solutis\account-service\src\main\java\com\solutis\acabouomony\account\service\UserService.java
