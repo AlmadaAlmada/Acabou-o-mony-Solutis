@@ -50,6 +50,21 @@ services:
     depends_on:
       - postgres-security-db
 
+  account-service:
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile
+    container_name: account-service
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-security-db:5433/security_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SERVER_PORT: 8084
+    depends_on:
+      - postgres-security-db
+
   payment-service:
     build:
       context: ./payment-service
@@ -71,6 +86,7 @@ services:
       - rabbitmq
       - security-service
       - postgres-security-db
+
 volumes:
   postgres-payment-data:
   postgres-security-data:
