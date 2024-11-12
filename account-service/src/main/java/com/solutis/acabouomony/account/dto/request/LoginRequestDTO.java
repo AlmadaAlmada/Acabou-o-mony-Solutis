@@ -13,7 +13,6 @@ public class LoginRequestDTO {
     private String email;
 
     @NotBlank(message = "A senha não pode estar vazia")
-    @Email(message = "Senha ou Email inválido")
     private String password;
 
  }

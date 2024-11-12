@@ -42,19 +42,28 @@ public class AuthController {
     @ApiResponse(responseCode = "400", description = "Dados inválidos para o registro")
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody @Valid RegisterRequestDTO registerRequest) {
+        // Criptografa a senha antes de salvar
+        String encryptedPassword = authService.getPasswordEncoder().encode(registerRequest.getPassword());
+
+        // Cria o novo usuário com a senha criptografada
         User newUser = new User(
-                null,
+                null,  // UUID será gerado automaticamente
                 registerRequest.getName(),
                 registerRequest.getCpf(),
                 registerRequest.getContact(),
                 registerRequest.getEmail(),
-                registerRequest.getPassword(),
+                encryptedPassword,  // Senha criptografada
                 registerRequest.getSecret(),
                 registerRequest.getAnswer()
         );
+
+        // Salva o novo usuário no banco de dados
         userService.createUser(newUser);
 
+        // Gera o token JWT para o novo usuário
         String token = authService.login(registerRequest.getEmail(), registerRequest.getPassword());
+
+        // Retorna o token JWT
         return ResponseEntity.status(201).body(token);
     }
 }
