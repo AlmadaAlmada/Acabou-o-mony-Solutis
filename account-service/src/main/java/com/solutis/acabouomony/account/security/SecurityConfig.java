@@ -40,10 +40,10 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers(AUTH_WHITELIST).permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers(AUTH_WHITELIST).permitAll() // Permitir todas as requisições nessas URLs
+                .anyRequest().authenticated()  // Exigir autenticação para qualquer outra requisição
                 .and()
-                .addFilterBefore(new JWTAuthFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class) // Filtro de JWT
+                .addFilterBefore(new JWTAuthFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class) // Adicionando o filtro de JWT
                 .build();
     }
 }
