@@ -23,7 +23,7 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/swagger-resources/**",
             "/webjars/**",
-            "/api/hello"
+            "/api/users/hello"
     };
 
     @Autowired
