@@ -23,7 +23,7 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/swagger-resources/**",
             "/webjars/**",
-            "/api/hello"
+            "/api/auth/test"
     };
 
     @Autowired
@@ -37,11 +37,11 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .cors().and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Stateless
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers(AUTH_WHITELIST).permitAll() // Permitir todas as requisições nessas URLs
-                .anyRequest().authenticated()  // Exigir autenticação para qualquer outra requisição
+                .requestMatchers(AUTH_WHITELIST).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JWTAuthFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class) // Adicionando o filtro de JWT
                 .build();

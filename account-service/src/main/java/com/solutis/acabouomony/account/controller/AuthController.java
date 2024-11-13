@@ -28,13 +28,21 @@ public class AuthController {
         this.userService = userService;
     }
 
+    @Operation(summary = "Testando o acesso ao authController antes de autenticar", description = "Verificando se o AUTH_WHITELIST esta sendo de fato liberado sem autenticação")
+    @ApiResponse(responseCode = "200", description = "endpoint acessado com sucesso!!")
+    @ApiResponse(responseCode = "401", description = "problemas ao acessar endpoint")
+    @GetMapping("/test")
+    public ResponseEntity<String> testEndpoint() {
+        return ResponseEntity.ok("AuthController Test: Acesso permitido! 😎");
+    }
+
     @Operation(summary = "Realizar login", description = "Autentica o usuário e retorna um token JWT.")
     @ApiResponse(responseCode = "200", description = "Login realizado com sucesso!")
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody @Valid LoginRequestDTO loginRequest) {
         String token = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
-        return ResponseEntity.ok(token);  // Retorna o token JWT
+        return ResponseEntity.ok("token: " + token);  // Retorna o token JWT
     }
 
     @Operation(summary = "Registrar novo usuário", description = "Registra um novo usuário no sistema e gera um token JWT.")
