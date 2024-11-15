@@ -39,11 +39,13 @@ public class SecurityConfig {
                 .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeHttpRequests()
-                .requestMatchers(AUTH_WHITELIST).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .addFilterBefore(new JWTAuthFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class) // Adicionando o filtro de JWT
+                .authorizeHttpRequests((auth) ->
+                        auth
+                                .requestMatchers(AUTH_WHITELIST).permitAll()
+                                .anyRequest().authenticated()
+                )
+                .addFilterBefore(new JWTAuthFilter(jwtUtil, userService), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
 }
