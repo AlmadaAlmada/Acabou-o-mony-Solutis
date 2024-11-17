@@ -9,6 +9,19 @@ Este repositório contém a solução do projeto Acabou o Mony, desenvolvido com
 como desafio em back-End. O sistema foi projetado para suportar um alto volume de transações financeiras, focando em segurança,
 escalabilidade e integração com plataformas.
 
+## Tecnologias Utilizadas
+- Spring Boot
+
+- Docker Desktop
+  
+- Spring Data JPA
+  
+- API Gateway
+
+- Eureka ou Consul:
+
+- RabbitMQ
+  
 ## Estrutura do Projeto
 ```
 |-- src                         <- Código fonte do Back-End do sistema.
@@ -32,6 +45,20 @@ escalabilidade e integração com plataformas.
 - Instale as dependências do projeto: ```mvn install```
 
 - Suba o banco de dados PostgreSQL com Docker: ```docker-compose up --build```
+
+## Desenvolvimento
+O projeto foi desenvolvido pela equipe, utilizando boas práticas de desenvolvimento e testes para garantir confiabilidade e 
+performance.
+
+### Membros da Equipe
+
+- **Alice Lima** - https://github.com/alsoares086 
+
+- **Larissa Sena** - https://github.com/larissacsena
+
+- **Pietra Almeida** - https://github.com/almeidapietra
+
+- **Vinícius Almada** - https://github.com/AlmadaAlmada
 
 
 
