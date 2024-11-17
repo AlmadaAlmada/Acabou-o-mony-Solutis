@@ -17,10 +17,10 @@ escalabilidade e integração com plataformas.
 - Spring Data JPA
   
 - API Gateway
-
-- Eureka ou Consul:
-
+  
 - RabbitMQ
+  
+- PostgreSQL
   
 ## Estrutura do Projeto
 ```
