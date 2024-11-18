@@ -11,12 +11,14 @@
         <module name="payment-service" />
         <module name="account-service" />
         <module name="security-service" />
+        <module name="email-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="account-service" options="-parameters" />
+      <module name="email-service" options="-parameters" />
       <module name="integration" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="security-service" options="-parameters" />

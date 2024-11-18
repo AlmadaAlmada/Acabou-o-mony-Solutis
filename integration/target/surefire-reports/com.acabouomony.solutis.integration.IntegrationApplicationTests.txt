@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.acabouomony.solutis.integration.IntegrationApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.937 s -- in com.acabouomony.solutis.integration.IntegrationApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.255 s -- in com.acabouomony.solutis.integration.IntegrationApplicationTests

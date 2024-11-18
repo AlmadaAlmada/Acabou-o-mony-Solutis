@@ -35,6 +35,33 @@ services:
     volumes:
       - postgres-security-data:/var/lib/postgresql/data
 
+  postgres-email-db:
+    image: postgres:13
+    container_name: postgres-email-db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=email_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-email-data:/var/lib/postgresql/data
+
+  email-service:
+    build:
+      context: ./email-service
+      dockerfile: Dockerfile
+    container_name: email-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-email-db:5432/email_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SERVER_PORT: 8082
+    depends_on:
+      - postgres-email-db
+
   security-service:
     build:
       context: ./security-service
@@ -96,3 +123,4 @@ volumes:
   postgres-payment-data:
   postgres-security-data:
   postgres-account-data:
+  postgres-email-data:
