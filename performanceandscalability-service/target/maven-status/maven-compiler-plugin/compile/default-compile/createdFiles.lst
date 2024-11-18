@@ -1,3 +1,15 @@
-com\acabouomony\solutis\performanceandscalability\controller\CacheTestController.class
+com\acabouomony\solutis\performanceandscalability\service\ScalingService.class
+com\acabouomony\solutis\performanceandscalability\monitoring\ResourceMonitor.class
+com\acabouomony\solutis\performanceandscalability\controller\MetricsController.class
 com\acabouomony\solutis\performanceandscalability\PerformanceAndScalabilityApplication.class
+com\acabouomony\solutis\performanceandscalability\controller\CacheTestController.class
+com\acabouomony\solutis\performanceandscalability\config\RabbitMQConfig.class
+com\acabouomony\solutis\performanceandscalability\service\MetricsService.class
+com\acabouomony\solutis\performanceandscalability\controller\PerformanceController.class
+com\acabouomony\solutis\performanceandscalability\monitoring\MetricResponse.class
 com\acabouomony\solutis\performanceandscalability\service\CacheTestService.class
+com\acabouomony\solutis\performanceandscalability\messaging\RabbitMQReceiver.class
+com\acabouomony\solutis\performanceandscalability\monitoring\MetricResponse$Measurement.class
+com\acabouomony\solutis\performanceandscalability\messaging\RabbitMQSender.class
+com\acabouomony\solutis\performanceandscalability\config\RedisConfig.class
+com\acabouomony\solutis\performanceandscalability\service\CacheManagerService.class

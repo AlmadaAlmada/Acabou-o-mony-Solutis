@@ -24,7 +24,10 @@ public class ScalingService {
             scaleUpReplicas();
         } else if (message.contains("High Memory")) {
             System.out.println("High Memory usage detected. Adjusting cache settings...");
-            cacheManagerService.adjustCacheSettings();
+            adjustCacheSettings();
+        } else if (message.contains("High response time")) {
+            System.out.println("High response time detected. Adjusting load balancing...");
+            handleHighResponseTime();
         } else {
             System.out.println("Tipo de evento não reconhecido. Nenhuma ação realizada.");
         }
@@ -33,7 +36,7 @@ public class ScalingService {
     public void scaleUpReplicas() {
         try (KubernetesClient client = new DefaultKubernetesClient()) {
             AppsAPIGroupDSL apps = client.apps();
-            var deploymentResource = apps.deployments().inNamespace("default").withName("NOME_DO_DEPLOYMENT");
+            var deploymentResource = apps.deployments().inNamespace("default").withName("performanceandscalability-deployment");
             Deployment deployment = deploymentResource.get();
 
             if (deployment != null) {
@@ -50,5 +53,15 @@ public class ScalingService {
         } catch (KubernetesClientException e) {
             System.err.println("Erro ao tentar escalar o deployment: " + e.getMessage());
         }
+    }
+
+    public void handleHighResponseTime() {
+        System.out.println("Handling high response time by scaling up replicas...");
+        scaleUpReplicas();
+    }
+
+    public void adjustCacheSettings() {
+        System.out.println("Adjusting cache settings to reduce memory load...");
+        cacheManagerService.adjustCacheSettings();
     }
 }
