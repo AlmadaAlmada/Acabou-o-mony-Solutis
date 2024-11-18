@@ -16,7 +16,9 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/swagger-resources/**",
-            "/webjars/**"
+            "/webjars/**",
+            "/payment-service/v3/api-docs/**",  // Swagger do payment-service
+            "/payment-service/swagger-ui/**"  // Swagger UI do payment-service
     };
 
     @Bean
