@@ -92,6 +92,18 @@ services:
       - security-service
       - postgres-security-db
 
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-payment-db
+      - rabbitmq
+      - security-service
+
 volumes:
   postgres-payment-data:
   postgres-security-data:
