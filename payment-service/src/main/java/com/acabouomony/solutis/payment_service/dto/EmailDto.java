@@ -7,7 +7,7 @@ public record EmailDto(UUID paymentId,
                        String orderNumber,
                        UUID userId,
                        String nameUser,
-                       String emailTo,
+                       String email,
                        BigDecimal value,
                        String status) {
 }

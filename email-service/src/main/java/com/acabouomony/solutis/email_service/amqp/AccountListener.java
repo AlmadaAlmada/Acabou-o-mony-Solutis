@@ -12,13 +12,17 @@ public class AccountListener {
     @Autowired
     private EmailService emailService;
 
-    @RabbitListener(queues = "Queue.send.emails")
-    public void envioEmailCodigo(ConfirmationCodeDTO codeDTO){
-        emailService.sendEmail(codeDTO.email(), "Codigo de confirmação", codeDTO.code());
-    }
+//    @RabbitListener(queues = "Queue.send.emails")
+//    public void envioEmailCodigo(ConfirmationCodeDTO codeDTO){
+//        emailService.sendEmail(codeDTO.email(), "Codigo de confirmação", codeDTO.code());
+//    }
+
     @RabbitListener(queues = "email-notification")
-    public void envioEmailStatusPedido(EmailDTO emailDTO){
-        System.out.println("Enviando email..." + emailDTO.getEmail());
+    public void envioEmailStatusPedido(EmailDTO emailDTO) {
+        if (emailDTO == null || emailDTO.getEmail() == null || emailDTO.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("EmailDTO ou destinatário é inválido");
+        }
+        // Chama o serviço de envio de e-mail
         emailService.sendOrderEmail(emailDTO);
     }
 }
